@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "fa60c9bd-f7b9-4412-90bb-67966d0dfeba",
+		"name": "customer-api",
+		"description": "Request collection devenvolvida para o projeto customer-api que mostra como fazer uma API utilizando paginação simples, sort e separando as camadas utilizando conceitos de clean archtecture e ports and adapters.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get-customers-filtered-by-name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/customers?filter=name=Al&page=0&size=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "name=Al"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "2"
+						}
+					]
+				},
+				"description": "busca clientes de forma paginada."
+			},
+			"response": []
+		},
+		{
+			"name": "get-customers-filtered-by-cpf",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/customers?filter=cpf=03764697067&page=0&size=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "cpf=03764697067"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "2"
+						}
+					]
+				},
+				"description": "busca clientes de forma paginada."
+			},
+			"response": []
+		},
+		{
+			"name": "post-customers",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"6778f57b-4a29-4c90-8e02-22375fccbe0a\",\n    \"name\": \"Dart Verde\",\n    \"cpf\": \"63836894017\",\n    \"birthDate\": \"1976-01-31\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers"
+					]
+				},
+				"description": "Insere um cliente."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
