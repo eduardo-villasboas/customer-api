@@ -2,6 +2,8 @@ package com.villasboas.customer.controller.usecase;
 
 import java.util.Objects;
 
+import com.villasboas.customer.database.Operation;
+
 public class Criteria {
 
 	private final Operation operation;

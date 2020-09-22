@@ -2,6 +2,7 @@ package com.villasboas.customer.controller.usecase;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Function;
 
@@ -9,7 +10,6 @@ import org.assertj.core.util.Lists;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 
 import com.villasboas.customer.database.CustomerEntity;
 
@@ -31,8 +31,8 @@ public class CustomerTestDataAdapter implements CustomerDataAdapter {
 	}
 
 	@Override
-	public Page<CustomerDto> findAll(Specification<CustomerEntity> specification, Pageable pageRequest,
-			Function<CustomerEntity, CustomerDto> converter) {
+	public Page<CustomerDto> findAll(Optional<String> filter, Pageable pageRequest,
+			Function<Customer, CustomerDto> converter) {
 		Page<CustomerEntity> customerPage = new PageImpl<>(customers);
 		return customerPage.map(converter);
 	}
@@ -41,4 +41,20 @@ public class CustomerTestDataAdapter implements CustomerDataAdapter {
 	public void insert(CustomerDto customerDto) {
 		throw new UnsupportedOperationException("Method not implemented yet.");
 	}
+
+	@Override
+	public CustomerDto findById(UUID id, Function<Customer, CustomerDto> entityToDtoMapperFunction) {
+		throw new UnsupportedOperationException("Method not implemented yet.");
+	}
+
+	@Override
+	public void delete(UUID id) {
+		throw new UnsupportedOperationException("Method not implemented yet.");
+	}
+
+	@Override
+	public void update(CustomerDto customerDto) {
+		throw new UnsupportedOperationException("Method not implemented yet.");
+	}
+
 }

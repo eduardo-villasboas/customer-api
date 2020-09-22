@@ -7,76 +7,6 @@
 	},
 	"item": [
 		{
-			"name": "get-customers-filtered-by-name",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/customers?filter=name=Al&page=0&size=2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"customers"
-					],
-					"query": [
-						{
-							"key": "filter",
-							"value": "name=Al"
-						},
-						{
-							"key": "page",
-							"value": "0"
-						},
-						{
-							"key": "size",
-							"value": "2"
-						}
-					]
-				},
-				"description": "busca clientes de forma paginada."
-			},
-			"response": []
-		},
-		{
-			"name": "get-customers-filtered-by-cpf",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/customers?filter=cpf=03764697067&page=0&size=2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"customers"
-					],
-					"query": [
-						{
-							"key": "filter",
-							"value": "cpf=03764697067"
-						},
-						{
-							"key": "page",
-							"value": "0"
-						},
-						{
-							"key": "size",
-							"value": "2"
-						}
-					]
-				},
-				"description": "busca clientes de forma paginada."
-			},
-			"response": []
-		},
-		{
 			"name": "post-customers",
 			"protocolProfileBehavior": {
 				"strictSSL": false
@@ -106,6 +36,187 @@
 					]
 				},
 				"description": "Insere um cliente."
+			},
+			"response": []
+		},
+		{
+			"name": "put-customers",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"6778f57b-4a29-4c90-8e02-22375fccbe0a\",\n    \"name\": \"Katarina\",\n    \"cpf\": \"36763331010\",\n    \"birthDate\": \"1988-12-16\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers"
+					]
+				},
+				"description": "Atualiza um cliente."
+			},
+			"response": []
+		},
+		{
+			"name": "patch-customers",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"op\":\"replace\",\n        \"path\":\"/name\",\n        \"value\":\"Alex\"},\n    {\n        \"op\":\"replace\",\n        \"path\":\"/birthDate\",\n        \"value\":\"1986-10-16\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/customers/6778f57b-4a29-4c90-8e02-22375fccbe0a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers",
+						"6778f57b-4a29-4c90-8e02-22375fccbe0a"
+					]
+				},
+				"description": "applica um patch em um cliente."
+			},
+			"response": []
+		},
+		{
+			"name": "get-customers-filtered-by-cpf",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/customers?filter=cpf=63836894017&page=0&size=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "cpf=63836894017"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "2"
+						}
+					]
+				},
+				"description": "busca clientes de forma paginada."
+			},
+			"response": []
+		},
+		{
+			"name": "get-customers-filtered-by-name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/customers?filter=name=Dart&page=0&size=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "name=Dart"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "2"
+						}
+					]
+				},
+				"description": "busca clientes de forma paginada."
+			},
+			"response": []
+		},
+		{
+			"name": "get-customer-by-id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/customers/6778f57b-4a29-4c90-8e02-22375fccbe0a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers",
+						"6778f57b-4a29-4c90-8e02-22375fccbe0a"
+					]
+				},
+				"description": "busca clientes por id."
+			},
+			"response": []
+		},
+		{
+			"name": "delete-customer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/customers/6778f57b-4a29-4c90-8e02-22375fccbe0a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customers",
+						"6778f57b-4a29-4c90-8e02-22375fccbe0a"
+					]
+				},
+				"description": "deleta cliente."
 			},
 			"response": []
 		}

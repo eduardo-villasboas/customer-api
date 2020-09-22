@@ -1,12 +1,15 @@
 package com.villasboas.customer.database;
 
+import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Function;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.villasboas.common.exception.NotFoundEntityException;
+import com.villasboas.customer.controller.usecase.Customer;
 import com.villasboas.customer.controller.usecase.CustomerDataAdapter;
 import com.villasboas.customer.controller.usecase.CustomerDto;
 
@@ -14,11 +17,18 @@ import com.villasboas.customer.controller.usecase.CustomerDto;
 class CustomerDataAdapterService implements CustomerDataAdapter {
 
 	private final CustomerRepository customerRepository;
-	private final Function<CustomerDto, CustomerEntity> dtoToEntityMapper; 
-
-	CustomerDataAdapterService(final CustomerRepository customerRepository) {
+	private final Function<CustomerDto, CustomerEntity> dtoToEntityMapper;
+	private final SpecificationFactory specificationFactory;
+	
+	CustomerDataAdapterService(final CustomerRepository customerRepository, 
+			final SpecificationFactory specificationFactory) {
 		this.customerRepository = customerRepository;
-		dtoToEntityMapper = customerDto -> {
+		this.specificationFactory = specificationFactory;
+		dtoToEntityMapper = createDtoToEntityMapper();
+	}
+
+	private static Function<CustomerDto, CustomerEntity> createDtoToEntityMapper() {
+		return customerDto -> {
 			final CustomerEntity customerEntity = new CustomerEntity();
 			customerEntity.setId(customerDto.getId());
 			customerEntity.setBirthDate(customerDto.getBirthDate());
@@ -29,9 +39,9 @@ class CustomerDataAdapterService implements CustomerDataAdapter {
 	}
 
 	@Override
-	public Page<CustomerDto> findAll(Specification<CustomerEntity> specification, Pageable pageRequest,
-			Function<CustomerEntity, CustomerDto> converter) {
-		return customerRepository.findAll(specification, pageRequest).map(converter);
+	public Page<CustomerDto> findAll(Optional<String> filter, Pageable pageRequest,
+			Function<Customer, CustomerDto> converter) {
+		return customerRepository.findAll(specificationFactory.factory(filter), pageRequest).map(converter);
 	}
 
 	@Override
@@ -39,5 +49,23 @@ class CustomerDataAdapterService implements CustomerDataAdapter {
 		final CustomerEntity customerEntityToSave = dtoToEntityMapper.apply(customerDto);
 		customerRepository.save(customerEntityToSave);
 	}
+
+	@Override
+	public CustomerDto findById(UUID id, Function<Customer, CustomerDto> entityToDtoMapperFunction){
+		final CustomerEntity customerEntity = customerRepository.findById(id)
+				.orElseThrow(() -> new NotFoundEntityException("Entidade não encontrada."));
+		return entityToDtoMapperFunction.apply(customerEntity);
+	}
+
+	@Override
+	public void delete(UUID id) {
+		customerRepository.deleteById(id);
+	}
+
+	@Override
+	public void update(CustomerDto customerDto) {
+		customerRepository.save(dtoToEntityMapper.apply(customerDto));
+	}
+
 
 }

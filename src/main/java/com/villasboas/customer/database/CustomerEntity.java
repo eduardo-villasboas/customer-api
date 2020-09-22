@@ -8,9 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.villasboas.customer.controller.usecase.Customer;
+
 @Entity
 @Table(name = "customer")
-public class CustomerEntity {
+public class CustomerEntity implements Customer {
 
 	@Id
 	@Column(name = "id")

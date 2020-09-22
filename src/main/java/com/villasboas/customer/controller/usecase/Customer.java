@@ -1,14 +1,16 @@
 package com.villasboas.customer.controller.usecase;
 
-import java.util.Optional;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.time.LocalDate;
+import java.util.UUID;
 
 public interface Customer {
 
-	Page<CustomerDto> findAll(Optional<String> filter, Pageable pageable);
+	UUID getId();
 
-	void insert(CustomerDto customerDto);
+	String getCpf();
+
+	LocalDate getBirthDate();
+
+	String getName();
 
 }

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.villasboas.customer.controller.usecase.Criteria;
-import com.villasboas.customer.controller.usecase.Operation;
 
 class SpecificationFactoryServiceTest {
 

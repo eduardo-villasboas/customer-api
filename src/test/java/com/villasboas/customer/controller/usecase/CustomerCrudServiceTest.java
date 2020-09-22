@@ -1,10 +1,8 @@
 package com.villasboas.customer.controller.usecase;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.notNull;
-import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
@@ -15,28 +13,22 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.jpa.domain.Specification;
 
 import com.villasboas.clock.Clock;
 import com.villasboas.customer.database.CustomerEntity;
 
-class CustomerServiceTest {
+class CustomerCrudServiceTest {
 
-	private CustomerService customerService;
+	private CustomerCrudService customerService;
 
 	private CustomerTestDataAdapter customerDataAdapter;
 
 	private Clock clock;
-
+	
 	@BeforeEach
 	void setup() {
 		clock = mock(Clock.class);
@@ -44,22 +36,7 @@ class CustomerServiceTest {
 		when(clock.getUtcLocalDate()).thenReturn(bithDateIn2020);
 
 		customerDataAdapter = spy(new CustomerTestDataAdapter());
-		SpecificationFactory specificationFactory = mock(SpecificationFactory.class);
-		when(specificationFactory.factory(any())).thenReturn(new Specification<CustomerEntity>() {
-
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public Predicate toPredicate(Root<CustomerEntity> root, CriteriaQuery<?> query,
-					CriteriaBuilder criteriaBuilder) {
-				throw new UnsupportedOperationException("Method not implemented yet.");
-			}
-		});
-		
-		customerService = new CustomerService(customerDataAdapter, specificationFactory, clock);
+		customerService = new CustomerCrudService(customerDataAdapter, clock);
 	}
 
 	@Test
@@ -83,7 +60,7 @@ class CustomerServiceTest {
 		assertThat(customerDto.getName()).isEqualTo(customer.getName());
 		assertThat(customerDto.getYearsOld()).isEqualTo((short)2);
 
-		verify(customerDataAdapter, times(1)).findAll(nullableSafeSpecificationMatcher(), eq(pageable), notNull());
+		verify(customerDataAdapter, times(1)).findAll(eq(filter), eq(pageable), notNull());
 
 	}
 	
@@ -94,12 +71,7 @@ class CustomerServiceTest {
 		
 		customerService.findAll(filter, pageable);
 		
-		verify(customerDataAdapter, times(1)).findAll(notNull(), eq(pageable), notNull());
+		verify(customerDataAdapter, times(1)).findAll(eq(filter), eq(pageable), notNull());
 	}
 	
-	@SuppressWarnings("unchecked")
-	private Specification<CustomerEntity> nullableSafeSpecificationMatcher() {
-		return nullable(Specification.class);
-	}
-
 }
