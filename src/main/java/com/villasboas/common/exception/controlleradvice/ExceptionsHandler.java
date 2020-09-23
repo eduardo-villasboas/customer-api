@@ -37,8 +37,14 @@ public class ExceptionsHandler {
 			MethodArgumentNotValidException methodArgumentNotValidException) {
 
 		final List<String> errorDetails = getInformationErroAsStringList(methodArgumentNotValidException);
-		
+
 		return ResponseEntity.badRequest().body(new ResponseError("Error when validate data.", errorDetails));
+	}
+
+	@ExceptionHandler(Exception.class)
+	ResponseEntity<ResponseError> handlerException() {
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(new ResponseError("Internal server error.", Collections.emptyList()));
 	}
 
 	private List<String> getInformationErroAsStringList(
