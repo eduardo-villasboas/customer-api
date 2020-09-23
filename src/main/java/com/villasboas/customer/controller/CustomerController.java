@@ -76,7 +76,7 @@ class CustomerController {
 	}
 
 	@PutMapping
-	ResponseEntity<?> update(@RequestBody CustomerDto customerDto) {
+	ResponseEntity<?> update(@RequestBody @Valid CustomerDto customerDto) {
 		customerCrud.update(dtoToBeanMapper.apply(customerDto));
 		return ResponseEntity.noContent().build();
 	}
