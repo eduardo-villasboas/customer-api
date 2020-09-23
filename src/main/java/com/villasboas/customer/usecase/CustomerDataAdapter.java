@@ -1,4 +1,4 @@
-package com.villasboas.customer.controller.usecase;
+package com.villasboas.customer.usecase;
 
 import java.util.Optional;
 import java.util.UUID;

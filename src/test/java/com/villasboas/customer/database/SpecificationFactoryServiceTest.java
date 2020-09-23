@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.villasboas.customer.controller.usecase.Criteria;
+import com.villasboas.customer.usecase.Criteria;
 
 class SpecificationFactoryServiceTest {
 

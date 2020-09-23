@@ -1,4 +1,4 @@
-package com.villasboas.customer.controller.usecase;
+package com.villasboas.customer.usecase;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
@@ -20,6 +20,8 @@ import org.springframework.data.domain.PageRequest;
 
 import com.villasboas.clock.Clock;
 import com.villasboas.customer.database.CustomerEntity;
+import com.villasboas.customer.usecase.CustomerBean;
+import com.villasboas.customer.usecase.CustomerCrudService;
 
 class CustomerCrudServiceTest {
 

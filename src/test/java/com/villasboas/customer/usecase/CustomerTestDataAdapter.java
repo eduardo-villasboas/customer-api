@@ -1,4 +1,4 @@
-package com.villasboas.customer.controller.usecase;
+package com.villasboas.customer.usecase;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,6 +12,9 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import com.villasboas.customer.database.CustomerEntity;
+import com.villasboas.customer.usecase.Customer;
+import com.villasboas.customer.usecase.CustomerBean;
+import com.villasboas.customer.usecase.CustomerDataAdapter;
 
 public class CustomerTestDataAdapter implements CustomerDataAdapter {
 

@@ -26,9 +26,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonpatch.JsonPatch;
-import com.villasboas.customer.controller.usecase.CustomerBean;
-import com.villasboas.customer.controller.usecase.CustomerCrud;
 import com.villasboas.customer.jsonpatch.JsonPatchWrapper;
+import com.villasboas.customer.usecase.CustomerBean;
+import com.villasboas.customer.usecase.CustomerCrud;
 
 @RestController
 @RequestMapping("/api/customers")

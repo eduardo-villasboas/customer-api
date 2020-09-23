@@ -28,8 +28,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
-import com.villasboas.customer.controller.usecase.Customer;
-import com.villasboas.customer.controller.usecase.CustomerBean;
+import com.villasboas.customer.usecase.Customer;
+import com.villasboas.customer.usecase.CustomerBean;
 
 class CustomerDataAdapterServiceTest {
 

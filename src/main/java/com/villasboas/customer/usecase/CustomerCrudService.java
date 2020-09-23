@@ -1,4 +1,4 @@
-package com.villasboas.customer.controller.usecase;
+package com.villasboas.customer.usecase;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

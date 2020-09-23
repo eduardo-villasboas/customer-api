@@ -11,7 +11,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.google.common.base.Preconditions;
-import com.villasboas.customer.controller.usecase.Criteria;
+import com.villasboas.customer.usecase.Criteria;
 
 @Service
 class SpecificationFactoryService implements SpecificationFactory {

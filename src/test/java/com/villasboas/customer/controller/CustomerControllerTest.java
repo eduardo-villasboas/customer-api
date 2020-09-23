@@ -38,7 +38,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.villasboas.CustomerServletApplicationTest;
 import com.villasboas.clock.Clock;
 import com.villasboas.common.exception.controlleradvice.ExceptionsHandler;
-import com.villasboas.customer.controller.usecase.CustomerBean;
+import com.villasboas.customer.usecase.CustomerBean;
 
 @SpringBootTest(classes = { CustomerServletApplicationTest.class })
 @Transactional

@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.villasboas.customer.controller.usecase.Customer;
+import com.villasboas.customer.usecase.Customer;
 
 @Entity
 @Table(name = "customer")

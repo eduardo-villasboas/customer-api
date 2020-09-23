@@ -9,9 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.villasboas.common.exception.NotFoundEntityException;
-import com.villasboas.customer.controller.usecase.Customer;
-import com.villasboas.customer.controller.usecase.CustomerBean;
-import com.villasboas.customer.controller.usecase.CustomerDataAdapter;
+import com.villasboas.customer.usecase.Customer;
+import com.villasboas.customer.usecase.CustomerBean;
+import com.villasboas.customer.usecase.CustomerDataAdapter;
 
 @Service
 class CustomerDataAdapterService implements CustomerDataAdapter {
