@@ -29,7 +29,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.villasboas.customer.controller.usecase.Customer;
-import com.villasboas.customer.controller.usecase.CustomerDto;
+import com.villasboas.customer.controller.usecase.CustomerBean;
 
 class CustomerDataAdapterServiceTest {
 
@@ -72,10 +72,10 @@ class CustomerDataAdapterServiceTest {
 	@Test
 	void testWehFindThenMapCustomersToCustomerEntity() {
 
-		final Function<Customer, CustomerDto> mapperFunction = e -> new CustomerDto();
+		final Function<Customer, CustomerBean> mapperFunction = e -> new CustomerBean();
 		final PageRequest pageable = PageRequest.of(0, 2);
 
-		final Page<CustomerDto> customersDto = customerDataAdapterService.findAll(Optional.empty(), pageable,
+		final Page<CustomerBean> customersDto = customerDataAdapterService.findAll(Optional.empty(), pageable,
 				mapperFunction);
 
 		assertThat(customersDto).isNotNull();
@@ -90,7 +90,7 @@ class CustomerDataAdapterServiceTest {
 	@Test
 	void testWhenCallInsertThenMapToEntityAndSave() {
 
-		final CustomerDto customerDto = new CustomerDto();
+		final CustomerBean customerDto = new CustomerBean();
 		final UUID randomUUID = UUID.randomUUID();
 		customerDto.setId(randomUUID);
 		customerDto.setName("Sol");

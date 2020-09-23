@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.villasboas.customer.controller.usecase.Customer;
 
@@ -16,15 +17,19 @@ public class CustomerEntity implements Customer {
 
 	@Id
 	@Column(name = "id")
+	@NotNull(message = "id cannot be null")
 	private UUID id;
 
 	@Column(name = "name")
+	@NotNull(message = "name cannot be null")
 	private String name;
 
 	@Column(name = "cpf")
+	@NotNull(message = "cpf cannot be null")
 	private String cpf;
 
 	@Column(name = "birth_date")
+	@NotNull(message = "birthDate cannot be null")
 	private LocalDate birthDate;
 
 	@Override

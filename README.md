@@ -3,7 +3,7 @@
 
 ---
 
-#### Tecnologias utilizadas e bibliotecas.
+#### Tecnologias, bibliotecas e técnicas.
 - Java 11
 - Gradle
 - Springboot
@@ -13,6 +13,7 @@
 - docker
 - JsonPatch
 - liquibase(a base de dados é criada automaticamente)
+- Ports and adapters/clean architecture.
 
 #### Para rodar testes pela linha de commando utilize o commando no linux.
 ```batch
@@ -32,7 +33,3 @@ sudo docker run --name db-customer-api -e POSTGRES_PASSWORD=customer-password -e
 ```
 ### Obs: o banco esta sendo mapeado para a porta 5431. 
 
-TODO: 
-- Tratar exceptions de constraint violation.
-- Validação de campos nulos em branco etc.
-- 

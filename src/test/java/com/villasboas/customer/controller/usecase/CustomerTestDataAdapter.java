@@ -31,19 +31,19 @@ public class CustomerTestDataAdapter implements CustomerDataAdapter {
 	}
 
 	@Override
-	public Page<CustomerDto> findAll(Optional<String> filter, Pageable pageRequest,
-			Function<Customer, CustomerDto> converter) {
+	public Page<CustomerBean> findAll(Optional<String> filter, Pageable pageRequest,
+			Function<Customer, CustomerBean> converter) {
 		Page<CustomerEntity> customerPage = new PageImpl<>(customers);
 		return customerPage.map(converter);
 	}
 
 	@Override
-	public void insert(CustomerDto customerDto) {
+	public void insert(CustomerBean customerDto) {
 		throw new UnsupportedOperationException("Method not implemented yet.");
 	}
 
 	@Override
-	public CustomerDto findById(UUID id, Function<Customer, CustomerDto> entityToDtoMapperFunction) {
+	public CustomerBean findById(UUID id, Function<Customer, CustomerBean> entityToDtoMapperFunction) {
 		throw new UnsupportedOperationException("Method not implemented yet.");
 	}
 
@@ -53,7 +53,7 @@ public class CustomerTestDataAdapter implements CustomerDataAdapter {
 	}
 
 	@Override
-	public void update(CustomerDto customerDto) {
+	public void update(CustomerBean customerDto) {
 		throw new UnsupportedOperationException("Method not implemented yet.");
 	}
 

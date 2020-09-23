@@ -9,15 +9,15 @@ import org.springframework.data.domain.Pageable;
 
 public interface CustomerDataAdapter {
 
-	Page<CustomerDto> findAll(Optional<String> filter, Pageable pageRequest,
-			Function<Customer, CustomerDto> converter);
+	Page<CustomerBean> findAll(Optional<String> filter, Pageable pageRequest,
+			Function<Customer, CustomerBean> converter);
 
-	void insert(CustomerDto customerDto);
+	void insert(CustomerBean customerDto);
 
-	CustomerDto findById(UUID id, Function<Customer, CustomerDto> entityToDtoMapperFunction);
+	CustomerBean findById(UUID id, Function<Customer, CustomerBean> entityToDtoMapperFunction);
 
 	void delete(UUID id);
 
-	void update(CustomerDto customerDto);
+	void update(CustomerBean customerDto);
 
 }

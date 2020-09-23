@@ -16,7 +16,7 @@ import com.villasboas.clock.Clock;
 class CustomerCrudService implements CustomerCrud {
 
 	private final CustomerDataAdapter customerDataAdapter;
-	private final Function<Customer, CustomerDto> entityToDtoMapperFunction;
+	private final Function<Customer, CustomerBean> entityToDtoMapperFunction;
 	private final Clock clock;
 
 	CustomerCrudService(final CustomerDataAdapter customerDataAdapter,
@@ -25,7 +25,7 @@ class CustomerCrudService implements CustomerCrud {
 		this.clock = clock;
 
 		entityToDtoMapperFunction = (customerEntity) -> {
-			CustomerDto customerDto = new CustomerDto();
+			CustomerBean customerDto = new CustomerBean();
 
 			customerDto.setId(customerEntity.getId());
 			customerDto.setCpf(customerEntity.getCpf());
@@ -44,17 +44,17 @@ class CustomerCrudService implements CustomerCrud {
 	}
 
 	@Override
-	public Page<CustomerDto> findAll(Optional<String> filter, Pageable pageable) {
+	public Page<CustomerBean> findAll(Optional<String> filter, Pageable pageable) {
 		return customerDataAdapter.findAll(filter, pageable, entityToDtoMapperFunction);
 	}
 
 	@Override
-	public void insert(CustomerDto customerDto) {
+	public void insert(CustomerBean customerDto) {
 		customerDataAdapter.insert(customerDto);
 	}
 
 	@Override
-	public CustomerDto findById(UUID id) {
+	public CustomerBean findById(UUID id) {
 		return customerDataAdapter.findById(id, entityToDtoMapperFunction);
 	}
 
@@ -64,14 +64,14 @@ class CustomerCrudService implements CustomerCrud {
 	}
 
 	@Override
-	public void update(CustomerDto customerDto) {
+	public void update(CustomerBean customerDto) {
 		customerDataAdapter.update(customerDto);
 	}
 
 	@Override
-	public CustomerDto patch(final UUID id, final JsonPatchAdapter jsonPatchAdapter) {
-		final CustomerDto customer = customerDataAdapter.findById(id, entityToDtoMapperFunction);
-		final CustomerDto patchedCustomer = jsonPatchAdapter.applyPatchToCustomer(customer);
+	public CustomerBean patch(final UUID id, final JsonPatchAdapter jsonPatchAdapter) {
+		final CustomerBean customer = customerDataAdapter.findById(id, entityToDtoMapperFunction);
+		final CustomerBean patchedCustomer = jsonPatchAdapter.applyPatchToCustomer(customer);
 		update(patchedCustomer);
 		patchedCustomer
 				.setYearsOld(calculeYearsOld(clock.getUtcLocalDate(), patchedCustomer.getBirthDate()).shortValue());

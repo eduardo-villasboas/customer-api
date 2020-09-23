@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 
 import com.villasboas.common.exception.NotFoundEntityException;
 import com.villasboas.customer.controller.usecase.Customer;
+import com.villasboas.customer.controller.usecase.CustomerBean;
 import com.villasboas.customer.controller.usecase.CustomerDataAdapter;
-import com.villasboas.customer.controller.usecase.CustomerDto;
 
 @Service
 class CustomerDataAdapterService implements CustomerDataAdapter {
 
 	private final CustomerRepository customerRepository;
-	private final Function<CustomerDto, CustomerEntity> dtoToEntityMapper;
+	private final Function<CustomerBean, CustomerEntity> dtoToEntityMapper;
 	private final SpecificationFactory specificationFactory;
 	
 	CustomerDataAdapterService(final CustomerRepository customerRepository, 
@@ -27,7 +27,7 @@ class CustomerDataAdapterService implements CustomerDataAdapter {
 		dtoToEntityMapper = createDtoToEntityMapper();
 	}
 
-	private static Function<CustomerDto, CustomerEntity> createDtoToEntityMapper() {
+	private static Function<CustomerBean, CustomerEntity> createDtoToEntityMapper() {
 		return customerDto -> {
 			final CustomerEntity customerEntity = new CustomerEntity();
 			customerEntity.setId(customerDto.getId());
@@ -39,19 +39,19 @@ class CustomerDataAdapterService implements CustomerDataAdapter {
 	}
 
 	@Override
-	public Page<CustomerDto> findAll(Optional<String> filter, Pageable pageRequest,
-			Function<Customer, CustomerDto> converter) {
+	public Page<CustomerBean> findAll(Optional<String> filter, Pageable pageRequest,
+			Function<Customer, CustomerBean> converter) {
 		return customerRepository.findAll(specificationFactory.factory(filter), pageRequest).map(converter);
 	}
 
 	@Override
-	public void insert(CustomerDto customerDto) {
+	public void insert(CustomerBean customerDto) {
 		final CustomerEntity customerEntityToSave = dtoToEntityMapper.apply(customerDto);
 		customerRepository.save(customerEntityToSave);
 	}
 
 	@Override
-	public CustomerDto findById(UUID id, Function<Customer, CustomerDto> entityToDtoMapperFunction){
+	public CustomerBean findById(UUID id, Function<Customer, CustomerBean> entityToDtoMapperFunction){
 		final CustomerEntity customerEntity = customerRepository.findById(id)
 				.orElseThrow(() -> new NotFoundEntityException("Entidade não encontrada."));
 		return entityToDtoMapperFunction.apply(customerEntity);
@@ -63,7 +63,7 @@ class CustomerDataAdapterService implements CustomerDataAdapter {
 	}
 
 	@Override
-	public void update(CustomerDto customerDto) {
+	public void update(CustomerBean customerDto) {
 		customerRepository.save(dtoToEntityMapper.apply(customerDto));
 	}
 

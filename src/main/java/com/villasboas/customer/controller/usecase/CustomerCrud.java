@@ -8,16 +8,16 @@ import org.springframework.data.domain.Pageable;
 
 public interface CustomerCrud {
 
-	Page<CustomerDto> findAll(Optional<String> filter, Pageable pageable);
+	Page<CustomerBean> findAll(Optional<String> filter, Pageable pageable);
 
-	void insert(CustomerDto customerDto);
+	void insert(CustomerBean customerDto);
 
-	CustomerDto findById(UUID id);
+	CustomerBean findById(UUID id);
 
 	void delete(UUID id);
 
-	void update(CustomerDto customerDto);
+	void update(CustomerBean customerDto);
 
-	CustomerDto patch(UUID id, JsonPatchAdapter jsonPatchAdapter);
+	CustomerBean patch(UUID id, JsonPatchAdapter jsonPatchAdapter);
 
 }

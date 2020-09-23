@@ -45,12 +45,12 @@ class CustomerCrudServiceTest {
 		final PageRequest pageable = PageRequest.of(0, 4);
 		final Optional<String> filter = Optional.empty();
 		
-		final Page<CustomerDto> customersPage = customerService.findAll(filter, pageable);
+		final Page<CustomerBean> customersPage = customerService.findAll(filter, pageable);
 
-		final List<CustomerDto> content = customersPage.getContent();
+		final List<CustomerBean> content = customersPage.getContent();
 		assertThat(content).hasSize(1);
 
-		final CustomerDto customerDto = content.get(0);
+		final CustomerBean customerDto = content.get(0);
 		final List<CustomerEntity> customerEntities = customerDataAdapter.getCustomers();
 		final CustomerEntity customer = customerEntities.get(0);
 
