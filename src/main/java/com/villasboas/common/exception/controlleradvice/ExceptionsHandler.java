@@ -42,7 +42,7 @@ public class ExceptionsHandler {
 	}
 
 	@ExceptionHandler(Exception.class)
-	ResponseEntity<ResponseError> handlerException() {
+	ResponseEntity<ResponseError> handlerException(Exception exception) {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.body(new ResponseError("Internal server error.", Collections.emptyList()));
 	}
